@@ -199,6 +199,11 @@ public:
 		unsigned char i = 0;
 		do {
 			int pos = 0;
+			
+			if (len[i] > 64) {
+				throw std::invalid_argument("Length is more than 64");
+			}
+			
 			for (unsigned char j = len[i]; j-- > 0;) {
 				bool bit = key[i] & (1ULL << j);
 				uint16_t to = bit ? trie[pos].right : trie[pos].left;
